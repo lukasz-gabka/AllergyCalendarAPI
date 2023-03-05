@@ -1,6 +1,10 @@
-﻿namespace AllergyCalendarAPI.Entities
+﻿namespace AllergyCalendarAPI.Entities;
+
+public class Medicine
 {
-    public class Medicine
-    {
-    }
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public List<Day> Days { get; set; }
+    public int UserId { get; set; }
+    public virtual User User { get; set; }
 }
