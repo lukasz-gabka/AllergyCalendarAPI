@@ -4,6 +4,9 @@ namespace AllergyCalendarAPI.Entities;
 
 public class ApiDbContext : DbContext
 {
+    public ApiDbContext()
+    {
+    }
     public ApiDbContext(DbContextOptions<ApiDbContext> options) : base(options)
     {
     }
@@ -42,8 +45,9 @@ public class ApiDbContext : DbContext
             .IsRequired();
 
         builder.Entity<Day>()
-            .Property(b => b.UserId)
-            .IsRequired();
+            .HasOne(b => b.User)
+            .WithMany(b => b.Days)
+            .OnDelete(DeleteBehavior.NoAction);
 
         builder.Entity<Medicine>()
             .Property(b => b.Name)
@@ -51,8 +55,9 @@ public class ApiDbContext : DbContext
             .HasMaxLength(50);
 
         builder.Entity<Medicine>()
-            .Property(b => b.UserId)
-            .IsRequired();
+            .HasOne(b => b.User)
+            .WithMany(b => b.Medicines)
+            .OnDelete(DeleteBehavior.NoAction);
 
         builder.Entity<Symptom>()
             .Property(b => b.Name)
@@ -60,7 +65,8 @@ public class ApiDbContext : DbContext
             .HasMaxLength(50);
 
         builder.Entity<Symptom>()
-            .Property(b => b.UserId)
-            .IsRequired();
+            .HasOne(b => b.User)
+            .WithMany(b => b.Symptoms)
+            .OnDelete(DeleteBehavior.NoAction);
     }
 }
