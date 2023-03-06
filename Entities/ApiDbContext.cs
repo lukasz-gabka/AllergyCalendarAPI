@@ -41,10 +41,6 @@ public class ApiDbContext : DbContext
             .IsUnique();
 
         builder.Entity<Day>()
-            .Property(b => b.MedicineId)
-            .IsRequired();
-
-        builder.Entity<Day>()
             .HasOne(b => b.User)
             .WithMany(b => b.Days)
             .OnDelete(DeleteBehavior.NoAction);

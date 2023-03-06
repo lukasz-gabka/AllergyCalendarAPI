@@ -71,7 +71,7 @@ namespace AllergyCalendarAPI.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    MedicineId = table.Column<int>(type: "int", nullable: false),
+                    MedicineId = table.Column<int>(type: "int", nullable: true),
                     UserId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -81,8 +81,7 @@ namespace AllergyCalendarAPI.Migrations
                         name: "FK_Days_Medicines_MedicineId",
                         column: x => x.MedicineId,
                         principalTable: "Medicines",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Days_Users_UserId",
                         column: x => x.UserId,

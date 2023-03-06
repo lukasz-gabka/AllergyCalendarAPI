@@ -34,7 +34,6 @@ namespace AllergyCalendarAPI.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<int?>("MedicineId")
-                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<int?>("UserId")
@@ -144,9 +143,7 @@ namespace AllergyCalendarAPI.Migrations
                 {
                     b.HasOne("AllergyCalendarAPI.Entities.Medicine", "Medicine")
                         .WithMany("Days")
-                        .HasForeignKey("MedicineId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("MedicineId");
 
                     b.HasOne("AllergyCalendarAPI.Entities.User", "User")
                         .WithMany("Days")
