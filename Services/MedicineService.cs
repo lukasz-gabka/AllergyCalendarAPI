@@ -18,9 +18,27 @@ public class MedicineService
     public int Create(CreateMedicineDto dto)
     {
         var medicine = _mapper.Map<Medicine>(dto);
+
         _dbContext.Add(medicine);
         _dbContext.SaveChanges();
 
         return medicine.Id;
+    }
+
+    public bool Delete(int id)
+    {
+        var medicine = _dbContext.Medicines     
+            .Where(m => m.Id == id)
+            .SingleOrDefault();
+
+        if (medicine == null)
+        {
+            return false;
+        }
+
+        _dbContext.Remove(medicine);
+        _dbContext.SaveChanges();
+
+        return true;
     }
 }

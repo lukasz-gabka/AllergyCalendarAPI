@@ -21,4 +21,15 @@ public class MedicineController : ControllerBase
         var id = _service.Create(dto);
         return Created($"medicine/{id}", id);
     }
+
+    [HttpDelete("{id}")]
+    public ActionResult Delete([FromRoute] int id)
+    {
+        var isDeleted = _service.Delete(id);
+        if (isDeleted)
+        {
+            return NoContent();
+        }
+        return NotFound();
+    }
 }
