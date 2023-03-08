@@ -41,4 +41,12 @@ public class MedicineService
 
         return true;
     }
+
+    public IEnumerable<MedicineDto> Get()
+    {
+        var medicines = _dbContext.Medicines.ToList();
+        var dtoList = _mapper.Map<List<MedicineDto>>(medicines);
+
+        return dtoList;
+    }
 }

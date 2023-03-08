@@ -32,4 +32,15 @@ public class MedicineController : ControllerBase
         }
         return NotFound();
     }
+
+    [HttpGet]
+    public ActionResult<IEnumerable<MedicineDto>> Get()
+    {
+        var dtoList = _service.Get();
+        if (dtoList == null || dtoList.Count() == 0)
+        {
+            return NoContent();
+        }
+        return Ok(dtoList);
+    }
 }
