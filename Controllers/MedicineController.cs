@@ -26,11 +26,11 @@ public class MedicineController : ControllerBase
     public ActionResult Delete([FromRoute] int id)
     {
         var isDeleted = _service.Delete(id);
-        if (isDeleted)
+        if (!isDeleted)
         {
-            return NoContent();
+            return NotFound();
         }
-        return NotFound();
+        return NoContent();
     }
 
     [HttpGet]
@@ -42,5 +42,16 @@ public class MedicineController : ControllerBase
             return NoContent();
         }
         return Ok(dtoList);
+    }
+
+    [HttpPut]
+    public ActionResult Update([FromBody] MedicineDto dto)
+    {
+        var isUpdated = _service.Update(dto);
+        if (!isUpdated)
+        {
+            return NotFound();
+        }
+        return NoContent();
     }
 }

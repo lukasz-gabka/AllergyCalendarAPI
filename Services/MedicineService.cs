@@ -31,7 +31,7 @@ public class MedicineService
             .Where(m => m.Id == id)
             .SingleOrDefault();
 
-        if (medicine == null)
+        if (medicine is null)
         {
             return false;
         }
@@ -48,5 +48,22 @@ public class MedicineService
         var dtoList = _mapper.Map<List<MedicineDto>>(medicines);
 
         return dtoList;
+    }
+
+    public bool Update(MedicineDto dto)
+    {
+        var medicine = _dbContext.Medicines
+            .Where(m => m.Id == dto.Id)
+            .SingleOrDefault();
+
+        if (medicine is null)
+        {
+            return false;
+        }
+
+        medicine.Name = dto.Name;
+        _dbContext.SaveChanges();
+
+        return true;
     }
 }
