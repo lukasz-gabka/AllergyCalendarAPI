@@ -11,6 +11,7 @@ builder.Services.AddDbContext<ApiDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DbConnectionString")));
 builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddScoped<MedicineService>();
+builder.Services.AddScoped<SymptomService>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

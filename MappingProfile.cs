@@ -9,6 +9,9 @@ public class MappingProfile : Profile
     public MappingProfile()
     {
         CreateMap<CreateMedicineDto, Medicine>();
-        CreateMap<Medicine, MedicineDto>();
+        CreateMap<Medicine, MedicineDto>().ReverseMap();
+
+        CreateMap<CreateSymptomDto, Symptom>();
+        CreateMap<Symptom, SymptomDto>().ReverseMap();
     }
 }
