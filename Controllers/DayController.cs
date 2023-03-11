@@ -32,4 +32,15 @@ public class DayController : ControllerBase
         }
         return Ok(dtoList);
     }
+
+    [HttpPut]
+    public ActionResult Update(UpdateDayDto dto)
+    {
+        var isUpdated = _service.Update(dto);
+        if (!isUpdated)
+        {
+            return NotFound();
+        }
+        return NoContent();
+    }
 }
