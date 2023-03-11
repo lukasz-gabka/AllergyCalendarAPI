@@ -12,6 +12,7 @@ builder.Services.AddDbContext<ApiDbContext>(options =>
 builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddScoped<MedicineService>();
 builder.Services.AddScoped<SymptomService>();
+builder.Services.AddScoped<DayService>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
