@@ -1,6 +1,7 @@
 ﻿using AllergyCalendarAPI.Entities;
 using AllergyCalendarAPI.Models;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 
 namespace AllergyCalendarAPI.Services;
 
@@ -28,7 +29,7 @@ public class DayService
         var day = new Day()
         {
             Date = dto.Date,
-            MedicineId = medicine.Id,
+            MedicineId = medicine?.Id,
             Medicine = medicine,
             Symptoms = symptoms
         };
@@ -37,5 +38,16 @@ public class DayService
         _dbContext.SaveChanges();
 
         return day.Id;
+    }
+
+    public List<DayDto> Get()
+    {
+        var days = _dbContext.Days
+            .Include(d => d.Medicine)
+            .Include(d => d.Symptoms)
+            .ToList();
+        var dtoList = _mapper.Map<List<DayDto>>(days);
+
+        return dtoList;
     }
 }

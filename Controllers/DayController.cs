@@ -21,4 +21,15 @@ public class DayController : ControllerBase
         var id = _service.Create(dto);
         return Created($"day/{id}", id);
     }
+
+    [HttpGet]
+    public ActionResult<DayDto> Get()
+    {
+        var dtoList = _service.Get();
+        if (dtoList is null || dtoList.Count() == 0)
+        {
+            return NoContent();
+        }
+        return Ok(dtoList);
+    }
 }
