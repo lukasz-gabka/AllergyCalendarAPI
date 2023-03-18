@@ -11,8 +11,10 @@ public class RegisterUserDto
     [MaxLength(50)]
     public string Name { get; set; }
     [Required]
+    [MinLength(8)]
     public string Password { get; set; }
     [Required]
+    [MinLength(8)]
     public string ConfirmPassword { get; set; }
 
 }
