@@ -1,5 +1,6 @@
 using AllergyCalendarAPI.Entities;
 using AllergyCalendarAPI.Services;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +14,8 @@ builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddScoped<MedicineService>();
 builder.Services.AddScoped<SymptomService>();
 builder.Services.AddScoped<DayService>();
+builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher <User>>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

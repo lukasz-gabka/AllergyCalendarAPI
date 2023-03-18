@@ -15,5 +15,7 @@ public class MappingProfile : Profile
         CreateMap<Symptom, SymptomDto>().ReverseMap();
 
         CreateMap<Day, DayDto>().ReverseMap();
+
+        CreateMap<RegisterUserDto, User>();
     }
 }
