@@ -1,10 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace AllergyCalendarAPI.Entities;
+namespace AllergyCalendarAPI.Models;
 
 public class RegisterUserDto
 {
     [Required]
+    [EmailAddress]
     public string Email { get; set; }
     [Required]
     [MaxLength(50)]

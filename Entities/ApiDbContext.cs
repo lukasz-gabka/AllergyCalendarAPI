@@ -32,6 +32,10 @@ public class ApiDbContext : DbContext
             .Property(b => b.PasswordHash)
             .IsRequired();
 
+        builder.Entity<User>()
+            .HasIndex(b => b.Email)
+            .IsUnique();
+
         builder.Entity<Day>()
             .Property(b => b.Date)
             .IsRequired();

@@ -1,4 +1,5 @@
 ﻿using AllergyCalendarAPI.Entities;
+using AllergyCalendarAPI.Models;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 

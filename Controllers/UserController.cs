@@ -1,4 +1,4 @@
-﻿using AllergyCalendarAPI.Entities;
+﻿using AllergyCalendarAPI.Models;
 using AllergyCalendarAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,12 +8,10 @@ namespace AllergyCalendarAPI.Controllers;
 [ApiController]
 public class UserController : ControllerBase
 {
-    private readonly ApiDbContext _dbContext;
     private readonly UserService _service;
 
-    public UserController(ApiDbContext dbContext, UserService service)
+    public UserController(UserService service)
     {
-        _dbContext = dbContext;
         _service = service;
     }
 
