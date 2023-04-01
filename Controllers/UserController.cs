@@ -15,12 +15,17 @@ public class UserController : ControllerBase
         _service = service;
     }
 
-    [HttpPut]
+    [HttpPost("register")]
     public ActionResult Register(RegisterUserDto dto)
     {
         _service.Register(dto);
-
-
         return NoContent();
+    }
+
+    [HttpPost("login")]
+    public ActionResult<string> Login(LoginUserDto dto)
+    {
+        var token = _service.Login(dto);
+        return Ok(token);
     }
 }
