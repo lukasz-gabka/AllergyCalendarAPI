@@ -45,6 +45,8 @@ builder.Services.AddAuthentication(option =>
     };
 });
 
+builder.Services.AddScoped<ErrorHandler>();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -59,6 +61,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseAuthentication();
+app.UseMiddleware<ErrorHandler>();
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();

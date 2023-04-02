@@ -37,14 +37,14 @@ public class UserService
 
         if (user == null)
         {
-            throw new Exception("Invalid email or password");
+            throw new BadRequestException("Invalid email or password");
         }
 
         var passwordHash = _hasher.VerifyHashedPassword(user, user.PasswordHash, dto.Password);
 
         if (passwordHash == PasswordVerificationResult.Failed)
         {
-            throw new Exception("Invalid email or password");
+            throw new BadRequestException("Invalid email or password");
         }
 
         var token = _service.GenerateToken(user);
