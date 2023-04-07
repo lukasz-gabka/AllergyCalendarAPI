@@ -1,11 +1,13 @@
 ﻿using AllergyCalendarAPI.Models;
 using AllergyCalendarAPI.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AllergyCalendarAPI.Controllers;
 
 [Route("[Controller]")]
 [ApiController]
+[Authorize]
 public class SymptomController : ControllerBase
 {
     private readonly SymptomService _service;

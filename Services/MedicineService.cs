@@ -8,16 +8,19 @@ public class MedicineService
 {
     private readonly ApiDbContext _dbContext;
     private readonly IMapper _mapper;
+    private readonly UserContextService _userContextService;
 
-    public MedicineService(ApiDbContext dbContext, IMapper mapper)
+    public MedicineService(ApiDbContext dbContext, IMapper mapper, UserContextService userContextService)
     {
         _dbContext = dbContext;
         _mapper = mapper;
+        _userContextService = userContextService;
     }
 
     public int Create(CreateMedicineDto dto)
     {
         var medicine = _mapper.Map<Medicine>(dto);
+        medicine.UserId = _userContextService.GetUserId;
 
         _dbContext.Add(medicine);
         _dbContext.SaveChanges();
@@ -29,6 +32,7 @@ public class MedicineService
     {
         var medicine = _dbContext.Medicines     
             .Where(m => m.Id == id)
+            .Where(m => m.UserId == _userContextService.GetUserId)
             .SingleOrDefault();
 
         if (medicine is null)
@@ -44,7 +48,9 @@ public class MedicineService
 
     public IEnumerable<MedicineDto> Get()
     {
-        var medicines = _dbContext.Medicines.ToList();
+        var medicines = _dbContext.Medicines
+            .Where(m => m.UserId == _userContextService.GetUserId)
+            .ToList();
         var dtoList = _mapper.Map<List<MedicineDto>>(medicines);
 
         return dtoList;
@@ -54,6 +60,7 @@ public class MedicineService
     {
         var medicine = _dbContext.Medicines
             .Where(m => m.Id == dto.Id)
+            .Where(m => m.UserId == _userContextService.GetUserId)
             .SingleOrDefault();
 
         if (medicine is null)

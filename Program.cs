@@ -46,6 +46,7 @@ builder.Services.AddAuthentication(option =>
 });
 
 builder.Services.AddScoped<ErrorHandler>();
+builder.Services.AddScoped<UserContextService>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
